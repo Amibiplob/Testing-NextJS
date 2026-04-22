@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Biplob Portfolio — Next.js 14
 
-## Getting Started
+## File Structure
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+src/
+├── app/
+│   ├── layout.tsx          ← Root layout (Navbar + Footer)
+│   ├── page.tsx            ← Home page
+│   ├── about/
+│   │   └── page.tsx        ← About page
+│   └── projects/
+│       └── page.tsx        ← All projects with filter
+├── components/
+│   └── sections/
+│       ├── Navbar.tsx
+│       ├── Hero.tsx
+│       ├── TechStack.tsx
+│       ├── FeaturedProjects.tsx
+│       ├── GitHubStats.tsx   ← Fetches LIVE from GitHub API
+│       ├── Contact.tsx
+│       └── Footer.tsx
+└── data/
+    ├── config.ts             ← YOUR info — edit this file only
+    └── projects.ts           ← All 20 real projects with links
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npx create-next-app@latest biplob-portfolio --typescript --tailwind --eslint --app --src-dir
+cd biplob-portfolio
+# Replace files with the ones provided
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## To update your info
 
-## Learn More
+Edit ONLY `src/data/config.ts` — all sections pull from this one file.
 
-To learn more about Next.js, take a look at the following resources:
+## Contact form
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Uses formsubmit.co (free, no backend needed).
+First submission will ask you to confirm your email.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## GitHub Stats
 
-## Deploy on Vercel
+Fetches live from GitHub API at build time (ISR, revalidates every hour).
+To avoid rate limits, add to `.env.local`:
+```
+GITHUB_TOKEN=your_github_personal_access_token
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy to Vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build   # test build locally first
+# Then push to GitHub and import in vercel.com
+```
