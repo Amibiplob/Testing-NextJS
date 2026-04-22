@@ -1,5 +1,17 @@
-import Image from "next/image";
+import Hero from "@/components/sections/Hero";
+import TechStack from "@/components/sections/TechStack";
+import FeaturedProjects from "@/components/sections/FeaturedProjects";
+import GitHubStats from "@/components/sections/GitHubStats";
+import Contact from "@/components/sections/Contact";
 
 export default function Home() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <>
+      <Hero />
+      <TechStack />
+      <FeaturedProjects />
+      <GitHubStats />
+      <Contact />
+    </>
+  );
 }
